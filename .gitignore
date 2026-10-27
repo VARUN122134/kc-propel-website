@@ -1,0 +1,13 @@
+﻿# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# tooling
+node_modules/
+*.log
+
+# local screenshots used while building
+shot-*.png
+shots.ps1
+shoot*.cjs

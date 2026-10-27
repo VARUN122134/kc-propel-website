@@ -12,3 +12,4 @@ shot-*.png
 shots.ps1
 shoot*.cjs
 setup-repo.ps1
+go-public.ps1

@@ -1,5 +1,8 @@
 # K&C Propel — website
 
+**Live:** https://varun122134.github.io/kc-propel-website/
+**Repo:** https://github.com/VARUN122134/kc-propel-website
+
 Static marketing site built from the customer's design brief (`K&C.pdf`).
 
 **Business Development × Sales × Strategy** — one page, six anchored sections.
@@ -9,14 +12,24 @@ index.html      markup (all sections)
 style.css       design tokens, layout, responsive rules
 app.js          mobile menu, scroll state, reveal animation, form validation
 assets/         drop images here (team photos, OG image, etc.)
-reference/      the original PDF, page by page, for design comparison
 ```
 
-No build step. No framework. Open `index.html` directly, or serve the folder:
+The client's PDF and the page renders of it stay on your machine only
+(`K&C.pdf`, `reference/spec-pages/`) and are intentionally not tracked.
+
+## Deploying
+
+Hosted on GitHub Pages from `main` / repo root — every push to `main` rebuilds the
+site in about a minute. `.nojekyll` is present so nothing gets processed.
 
 ```sh
-npx serve .          # or: python -m http.server
+git add -A
+git commit -m "Update copy"
+git push
 ```
+
+Any static host works too (Netlify, Vercel, Cloudflare Pages): no build step, no
+dependencies, just the three files.
 
 ## Design tokens
 

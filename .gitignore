@@ -11,3 +11,4 @@ node_modules/
 shot-*.png
 shots.ps1
 shoot*.cjs
+setup-repo.ps1

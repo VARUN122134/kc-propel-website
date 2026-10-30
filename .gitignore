@@ -3,17 +3,16 @@
 Thumbs.db
 desktop.ini
 
-# tooling
+# dependencies and build output
 node_modules/
+dist/
 *.log
 
-# local screenshots used while building
-shot-*.png
-shots.ps1
-shoot*.cjs
-setup-repo.ps1
-go-public.ps1
-reference/
+# client source material — stays local
 K&C.pdf
-live.png
+reference/
+
+# local tooling / QA scratch
+shot-*.png
+m-*.png
 *.ps1

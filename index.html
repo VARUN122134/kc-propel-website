@@ -13,9 +13,31 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@1,400;1,500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css" />
+<style>
+  /* critical: avoid a white flash before the bundle paints */
+  html { background: #F7F4F0; }
+  body { margin: 0; background: #F7F4F0; }
+</style>
 </head>
 <body>
+
+<!-- without JS the loader would never dismiss: hide it and keep the SVG diagram -->
+<noscript>
+  <style>
+    .loader { display: none !important; }
+    #stage { display: none !important; }
+  </style>
+</noscript>
+
+<!-- 3D stage: fixed behind the page, transparent, non-interactive -->
+<canvas id="stage" aria-hidden="true"></canvas>
+
+<!-- entry loader: dismisses itself, never blocks content -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-mark"><span class="loader-kc">K&amp;C</span><span class="loader-propel">PROPEL</span></div>
+  <div class="loader-bar"><span class="loader-fill" id="loader-fill"></span></div>
+  <p class="loader-note">Business Development × Sales × Strategy</p>
+</div>
 
 <!-- ===== icon sprite ===== -->
 <svg class="sprite" aria-hidden="true" focusable="false">
@@ -265,14 +287,17 @@
 </section>
 
 <!-- ===== campaigns ===== -->
-<section class="section">
-  <div class="wrap">
-    <header class="section-head">
-      <h2 class="h2">Every Campaign Needs<br />a Reason.</h2>
-      <p class="section-sub">We don't believe in sending the same message to everyone.<br />We build campaigns around a specific audience, market, product or objective.</p>
-    </header>
+<section class="section campaigns" id="campaigns">
+  <div class="campaign-stage">
+    <div class="wrap campaign-head">
+      <header class="section-head">
+        <h2 class="h2">Every Campaign Needs<br />a Reason.</h2>
+        <p class="section-sub">We don't believe in sending the same message to everyone.<br />We build campaigns around a specific audience, market, product or objective.</p>
+      </header>
+      <p class="campaign-hint" aria-hidden="true">Scroll →</p>
+    </div>
 
-    <div class="card-grid grid-3">
+    <div class="campaign-track">
       <article class="card card-soft card-campaign">
         <div class="campaign-top"><span class="chip-icon"><svg class="ic"><use href="#i-target"/></svg></span><span class="ghost-num">01</span></div>
         <h3 class="card-title">New Market Campaign</h3>
@@ -308,7 +333,7 @@
         <p class="card-body">Fresh outbound campaigns designed to build a pipeline from scratch.</p>
       </article>
 
-      <article class="card card-dashed">
+      <article class="card card-dashed card-campaign-end">
         <h3 class="card-title">Build a Campaign With Us</h3>
         <p class="card-body">Tell us what you're trying to reach. We'll design the campaign to get there.</p>
         <a href="#contact" class="link-arrow">Get Started <svg class="ic"><use href="#i-arrow-right"/></svg></a>
@@ -635,6 +660,6 @@
   </div>
 </footer>
 
-<script src="app.js"></script>
+<script type="module" src="/src/main.ts"></script>
 </body>
 </html>

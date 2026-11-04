@@ -113,6 +113,7 @@ body.stage-ready .hero-figure .propel-diagram { opacity: 0; }
 /* ---------- campaign rail ---------- */
 .campaigns { padding: 0; }
 .campaign-stage {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -133,6 +134,28 @@ body.stage-ready .hero-figure .propel-diagram { opacity: 0; }
   letter-spacing: 0.19em;
   text-transform: uppercase;
   color: var(--accent);
+  animation: hint-nudge 2.8s var(--ease) infinite;
+}
+@keyframes hint-nudge {
+  0%, 100% { transform: translateX(0); opacity: 0.62; }
+  50%      { transform: translateX(6px); opacity: 1; }
+}
+
+/* fills as the rail travels; only meaningful while the section is pinned */
+.rail-progress {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 14px;
+  height: 1px;
+  background: var(--line);
+}
+.rail-progress span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
 }
 
 .campaign-track {
@@ -161,6 +184,7 @@ body.stage-ready .hero-figure .propel-diagram { opacity: 0; }
     gap: 0;
   }
   .campaign-hint { display: none; }
+  .rail-progress { display: none; }
   .campaign-track {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));

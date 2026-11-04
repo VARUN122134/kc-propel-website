@@ -4,7 +4,8 @@ import "./styles/stage.css";
 import { initScroll } from "./motion/scroll";
 import { heroIntro, initReveals } from "./motion/reveals";
 import { initRail } from "./motion/rail";
-import { initTilt } from "./motion/tilt";
+import { initPointerFx } from "./motion/tilt";
+import { initProgress } from "./motion/progress";
 import { initHeader } from "./ui/header";
 import { initForm } from "./ui/form";
 import { runLoader } from "./ui/loader";
@@ -19,6 +20,7 @@ function boot(): void {
   initForm();
   initScroll(reduced);
   initRail();
+  initProgress();
 
   let stage: StageHandle | null = null;
   if (!reduced) {
@@ -32,7 +34,7 @@ function boot(): void {
       allowPointer: !lowPower,
     });
 
-    initTilt();
+    initPointerFx();
   }
 
   const ready = stage ? stage.ready : Promise.resolve();

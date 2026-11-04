@@ -33,9 +33,10 @@ src/stage/object.ts      nucleus, rings, spokes, labels, particle field
 src/stage/chapters.ts    the camera choreography (screen-relative keyframes)
 src/stage/textures.ts    canvas textures: dot, glow, diagram labels
 src/motion/scroll.ts     Lenis + ScrollTrigger wiring, anchor offsets
-src/motion/reveals.ts    hero intro and scroll reveals
-src/motion/rail.ts       pinned horizontal campaign rail (desktop only)
-src/motion/tilt.ts       pointer tilt on cards (desktop pointers only)
+src/motion/reveals.ts    hero intro, scroll reveals, quote/method line draws, parallax drift
+src/motion/rail.ts       pinned horizontal campaign rail + its progress line (desktop only)
+src/motion/tilt.ts       pointer tilt and cursor-follow glow on cards (desktop pointers only)
+src/motion/progress.ts   the accent hairline under the header
 src/ui/loader.ts         entry loader with a hard 2.6s ceiling
 src/ui/header.ts         mobile menu, sticky state, active nav link
 src/ui/form.ts           contact form validation + submit stub
@@ -63,6 +64,29 @@ sections get light hairlines.
 
 Quality drops automatically below 900px, on 4-core machines, and on touch-only
 devices (fewer particles, no pointer parallax, capped DPR at 1.6).
+
+## Motion
+
+Everything animates from one vocabulary: hairlines drawing, masked type rising,
+small drifts. Nothing bounces, nothing spins.
+
+| Where | What |
+| --- | --- |
+| Header | accent hairline that fills with scroll progress |
+| Hero | masked line-by-line headline, then copy and figure |
+| Statement | the three closing lines land in sequence |
+| Cards | cursor-follow glow, accent rule across the top edge, icon and number shift |
+| Buttons | one-shot sheen sweep |
+| Sectors | icons pop in a beat behind their row |
+| Method | the rule over the five steps draws across the band |
+| Campaigns | pinned rail with a progress line at its foot and a nudging hint |
+| Results | each stat word settles in letter by letter |
+| Founder | words fade in while the accent rule draws down |
+| Team | portrait and gradient drift on hover |
+| Throughout | numerals and marks drift against the scroll |
+
+All of it is skipped under `prefers-reduced-motion: reduce`, and none of it is
+needed to read the page.
 
 ## Accessibility and fallbacks
 

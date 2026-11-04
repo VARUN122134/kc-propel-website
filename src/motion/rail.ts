@@ -12,28 +12,32 @@ export function initRail(): void {
   const track = document.querySelector<HTMLElement>(".campaign-track");
   if (!section || !track) return;
 
+  const fill = document.querySelector<HTMLElement>(".rail-progress span");
   const mm = gsap.matchMedia();
 
   mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
     const distance = () => Math.max(0, track.scrollWidth - window.innerWidth + 48);
 
-    const tween = gsap.to(track, { x: () => -distance(), ease: "none" });
-
-    const trigger = ScrollTrigger.create({
-      trigger: section,
-      start: "top top",
-      end: () => `+=${Math.max(480, distance() + window.innerHeight * 0.5)}`,
-      pin: true,
-      anticipatePin: 1,
-      scrub: 0.7,
-      animation: tween,
-      invalidateOnRefresh: true,
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: () => `+=${Math.max(480, distance() + window.innerHeight * 0.5)}`,
+        pin: true,
+        anticipatePin: 1,
+        scrub: 0.7,
+        invalidateOnRefresh: true,
+      },
     });
 
+    tl.to(track, { x: () => -distance(), ease: "none" }, 0);
+    if (fill) tl.fromTo(fill, { scaleX: 0 }, { scaleX: 1, ease: "none" }, 0);
+
     return () => {
-      trigger.kill();
-      tween.kill();
+      tl.scrollTrigger?.kill();
+      tl.kill();
       gsap.set(track, { clearProps: "transform" });
+      if (fill) gsap.set(fill, { clearProps: "transform" });
     };
   });
 }

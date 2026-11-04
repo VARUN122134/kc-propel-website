@@ -902,6 +902,189 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
   color: #9A958D;
 }
 
+/* ---------- scroll progress ---------- */
+.scroll-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.scroll-progress span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  will-change: transform;
+}
+
+/* ---------- pointer glow ---------- */
+/* --mx / --my / --lit are written by src/motion/tilt.ts */
+.card,
+.sector,
+.team-card { position: relative; }
+
+.card::after,
+.sector::after,
+.team-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(196, 80, 30, 0.11),
+    rgba(196, 80, 30, 0) 62%
+  );
+  opacity: var(--lit, 0);
+  transition: opacity 0.45s var(--ease);
+}
+
+/* accent rule that draws across the top edge on hover */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 18px;
+  right: 18px;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.55s var(--ease);
+  pointer-events: none;
+}
+.card:hover::before { transform: scaleX(1); }
+
+.card-icon,
+.card-num,
+.ghost-num,
+.chip-icon,
+.why-num,
+.sector-icon,
+.portrait {
+  transition: color 0.3s var(--ease), transform 0.45s var(--ease),
+              background-color 0.3s var(--ease);
+}
+.card:hover .card-icon { color: var(--accent); transform: translate(3px, -3px); }
+.card:hover .card-num { color: var(--accent); }
+.card:hover .ghost-num { color: #C9BFB0; }
+.card:hover .chip-icon { background: var(--accent); transform: rotate(-6deg) scale(1.05); }
+.sector:hover .sector-icon {
+  background: rgba(196, 80, 30, 0.13);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* button sheen */
+.btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 34%,
+    var(--sheen, rgba(255, 255, 255, 0.22)) 50%,
+    transparent 66%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.8s var(--ease);
+}
+.btn:hover::after,
+.btn:focus-visible::after { transform: translateX(130%); }
+.btn-ghost { --sheen: rgba(20, 22, 26, 0.09); }
+
+/* ---------- team ---------- */
+.team-photo {
+  background-size: 150% 150%;
+  background-position: 18% 22%;
+  transition: background-position 0.9s var(--ease);
+}
+.team-card:hover .team-photo { background-position: 82% 78%; }
+.team-card:hover .portrait { transform: scale(1.06); }
+
+/* ---------- founder quote rule ---------- */
+.founder-quote {
+  position: relative;
+  border-left: 0;
+  padding-left: 28px;
+}
+.founder-quote::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleY(var(--rule, 1));
+  transform-origin: 50% 0;
+}
+
+/* ---------- method rule ---------- */
+.method { position: relative; }
+.method::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    rgba(217, 130, 92, 0.55) 46%,
+    rgba(255, 255, 255, 0) 92%
+  );
+  transform: scaleX(var(--draw, 1));
+  transform-origin: 0 50%;
+}
+.method-step:hover .method-num {
+  border-color: var(--accent);
+  color: var(--accent-soft);
+  transform: scale(1.06);
+}
+
+/* ---------- form feedback ---------- */
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  box-shadow: 0 0 0 3px rgba(196, 80, 30, 0.14);
+}
+
+/* ---------- footer links ---------- */
+.footer-col a,
+.contact-list a { position: relative; }
+.footer-col a::after,
+.contact-list a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.45;
+  transition: right 0.35s var(--ease);
+}
+.footer-col a:hover::after,
+.contact-list a:hover::after { right: 0; }
+
+/* scroll-driven elements are transformed by GSAP */
+[data-drift] { will-change: transform; }
+
 /* ---------- reveal animation ---------- */
 .reveal {
   opacity: 0;
@@ -915,6 +1098,26 @@ h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .pulse .halo { animation: none; opacity: 0.3; }
   .btn, .btn .ic, .card, .ic { transition: none; }
+  .btn::after,
+  .card::before,
+  .card::after,
+  .sector::after,
+  .team-card::after { display: none; }
+  .card-icon,
+  .card-num,
+  .ghost-num,
+  .chip-icon,
+  .why-num,
+  .sector-icon,
+  .portrait,
+  .method-num { transition: none; }
+  .team-photo { transition: none; background-position: 18% 22%; }
+  .card:hover .card-icon,
+  .card:hover .chip-icon,
+  .sector:hover .sector-icon,
+  .team-card:hover .portrait,
+  .method-step:hover .method-num { transform: none; }
+  .campaign-hint { animation: none; }
 }
 
 /* =========================================================

@@ -1,12 +1,23 @@
 import { defineConfig } from "vite";
 
+/**
+ * Project Pages site, served from /kc-propel-website/.
+ * Every page is a real document (no client-side router), so the QR code can
+ * point straight at /profile/ and shared links always resolve.
+ */
 export default defineConfig({
-  // relative asset URLs so the build works from a GitHub Pages project path
-  base: "./",
+  base: "/kc-propel-website/",
   build: {
     target: "es2022",
-    cssCodeSplit: false,
-    assetsInlineLimit: 2048,
+    rollupOptions: {
+      input: {
+        landing: "index.html",
+        discover: "discover/index.html",
+        about: "about/index.html",
+        contact: "contact/index.html",
+        profile: "profile/index.html",
+      },
+    },
   },
   server: {
     port: 5177,

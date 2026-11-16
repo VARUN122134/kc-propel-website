@@ -1,13 +1,23 @@
-# K&C Propel — website
+# K&C — website
 
 **Live:** https://varun122134.github.io/kc-propel-website/
 **Repo:** https://github.com/VARUN122134/kc-propel-website
 
-**Business Development × Sales × Strategy** — one page, fourteen sections.
+**Business Development × Sales Growth** — a five-page brand experience in deep
+burgundy, champagne gold and warm ivory. Built with Vite + TypeScript and GSAP.
 
-The site is a Vite + TypeScript build. The hero diagram is a real 3D scene
-(three.js) that travels the page as you scroll, and every section below it is
-plain semantic HTML with GSAP-driven reveals.
+## Pages
+
+| Path | What it is |
+| --- | --- |
+| `/` | Landing. The floating K&C monogram, the tagline and one clear way in. |
+| `/discover/` | The QR-inspired service hub: six disciplines around a central K&C. |
+| `/about/` | The business and the five-stage approach. |
+| `/contact/` | Enquiry form, email, WhatsApp and what happens next. |
+| `/profile/` | The dedicated QR destination: intro, six services, approach, contact. |
+
+Every page is a real document, not a client-side route, so a QR code can point
+straight at `/profile/` and every link always resolves.
 
 ## Running it
 
@@ -15,105 +25,135 @@ plain semantic HTML with GSAP-driven reveals.
 npm install
 npm run dev      # http://localhost:5177
 npm run build    # typecheck + production build into dist/
-npm run preview  # serve dist/
+npm run preview  # serve dist/ at the Pages base path
 ```
 
-Node 20+ required. `tsc --noEmit` runs as part of `build`, so a type error fails
-the build before anything is emitted.
+Node 20+ required. `tsc --noEmit` runs as part of `build`.
 
 ## Structure
 
 ```
-index.html               all markup: 14 sections, inline SVG icon sprite
-src/main.ts              boot order
-src/styles/site.css      design tokens, layout, section styling
-src/styles/stage.css     canvas, loader, campaign rail, motion states
-src/stage/renderer.ts    renderer, camera, scroll progress, seams, pointer parallax
-src/stage/object.ts      nucleus, rings, spokes, labels, particle field
-src/stage/chapters.ts    the camera choreography (screen-relative keyframes)
-src/stage/textures.ts    canvas textures: dot, glow, diagram labels
-src/motion/scroll.ts     Lenis + ScrollTrigger wiring, anchor offsets
-src/motion/reveals.ts    hero intro, scroll reveals, quote/method line draws, parallax drift
-src/motion/rail.ts       pinned horizontal campaign rail + its progress line (desktop only)
-src/motion/tilt.ts       pointer tilt and cursor-follow glow on cards (desktop pointers only)
-src/motion/progress.ts   the accent hairline under the header
-src/ui/loader.ts         entry loader with a hard 2.6s ceiling
-src/ui/header.ts         mobile menu, sticky state, active nav link
-src/ui/form.ts           contact form validation + submit stub
+index.html                 landing page
+discover/index.html        hub + modal shell + no-JS fallback
+about/index.html           about & approach
+contact/index.html         contact form and direct channels
+profile/index.html         QR destination / company profile
+
+src/pages/*.ts             one entry per page: imports its styles, boots its UI
+src/site/config.ts         brand name, tagline, email, WhatsApp, base path
+src/site/services.ts       the six disciplines + five approach stages (shared copy)
+src/site/chrome.ts         sticky header, mobile menu, scroll hairline, page veil
+src/site/monogram.ts       monogram float, pointer tilt, moving highlight
+src/site/dust.ts           canvas champagne motes
+src/site/reveal.ts         masked headline reveals, scroll reveals, parallax
+src/site/modal.ts          accessible service dialog with focus trap
+
+src/styles/tokens.css      brand colours, type stacks, layout and motion tokens
+src/styles/base.css        reset, type scale, header/footer, buttons, form, veil
+src/styles/monogram.css    the coin, orbit, gloss and spark
+src/styles/landing.css     landing composition
+src/styles/discover.css    hub grid, nodes, traveler, marquee, modal
+src/styles/pages.css       shared hero, stage rail and closing band
+src/styles/about.css       about-specific layout
+src/styles/contact.css     form + direct panel
+src/styles/profile.css     the compact QR profile
 ```
 
-## The 3D stage
-
-The object is the hero diagram extruded: ink hairlines on paper, one burnt-orange
-nucleus, labelled **PROSPECT → ENGAGE → OPPORTUNITY** (the same story the original
-SVG told). It sits on a fixed canvas above the section backgrounds and below the
-copy.
-
-Two rules keep it from fighting the page:
-
-- **Chapter choreography** (`chapters.ts`) is expressed in screen fractions
-  (`fracX`, `fracY`, `size`) rather than world units, so the composition holds at
-  any viewport size. Strong at the hero, a large quiet watermark on dark sections,
-  and nearly gone over dense content.
-- **Seam fading** (`renderer.ts`) fades the stage out whenever a section edge
-  approaches the middle of the viewport, so the object is never sliced in half by
-  a paper↔ink boundary.
-
-Theme inversion is driven by whichever section sits under the viewport centre: dark
-sections get light hairlines.
-
-Quality drops automatically below 900px, on 4-core machines, and on touch-only
-devices (fewer particles, no pointer parallax, capped DPR at 1.6).
-
-## Motion
-
-Everything animates from one vocabulary: hairlines drawing, masked type rising,
-small drifts. Nothing bounces, nothing spins.
-
-| Where | What |
-| --- | --- |
-| Header | accent hairline that fills with scroll progress |
-| Hero | masked line-by-line headline, then copy and figure |
-| Statement | the three closing lines land in sequence |
-| Cards | cursor-follow glow, accent rule across the top edge, icon and number shift |
-| Buttons | one-shot sheen sweep |
-| Sectors | icons pop in a beat behind their row |
-| Method | the rule over the five steps draws across the band |
-| Campaigns | pinned rail with a progress line at its foot and a nudging hint |
-| Results | each stat word settles in letter by letter |
-| Founder | words fade in while the accent rule draws down |
-| Team | portrait and gradient drift on hover |
-| Throughout | numerals and marks drift against the scroll |
-
-All of it is skipped under `prefers-reduced-motion: reduce`, and none of it is
-needed to read the page.
-
-## Accessibility and fallbacks
-
-- With `prefers-reduced-motion: reduce` the canvas never initialises, the loader is
-  removed immediately, the original SVG diagram stays visible, and no scroll
-  animation is registered.
-- Without WebGL the stage fails silently and the SVG fallback remains.
-- Without JavaScript a `<noscript>` block hides the loader and the canvas, so the
-  page is fully readable.
-- The canvas is `aria-hidden` and `pointer-events: none`; all content lives in the
-  DOM. Focus rings, `aria-expanded` on the menu button, labelled fields and an
-  `aria-live` form status are unchanged.
-
-## Design tokens
+## The brand system
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `--paper` | `#F7F4F0` | page background |
-| `--paper-2` | `#F2EEE9` | tinted sections, soft cards |
-| `--ink` | `#14161A` | headings, dark sections |
-| `--body` | `#4A4F57` | paragraph text |
-| `--accent` | `#C4501E` | eyebrows, key lines, primary CTA on dark |
-| `--line` | `#E4DED5` | hairlines and card borders |
+| `--ivory` | `#FAF9F6` | page background |
+| `--ivory-2` | `#F3F0E9` | alternating bands |
+| `--burgundy` | `#702632` | primary brand, headings, buttons |
+| `--burgundy-ink` | `#2C1216` | dark bands and footer |
+| `--gold` | `#C6A66B` | accents, rules, the orbit |
+| `--charcoal` | `#282526` | body text |
+| `--muted` | `#6F6663` | secondary text |
 
-Type: **Inter** for everything, **Newsreader italic** for the founder quote and
-footer motto. Buttons are fully rounded pills; no drop shadows — depth comes from
-tonal bands and 1px hairlines.
+**Type:** DUNE for display headings, DM Sans for body copy and Cormorant Garamond
+italic for the serif counterpoint.
+
+DUNE is a licensed display face and is not redistributable, so **the build ships
+without it** and falls back to Jost. To switch it on, drop the licensed webfont
+into `public/fonts/dune-regular.woff2` and uncomment the `@font-face` block at the
+bottom of `src/styles/tokens.css`. Nothing else changes.
+
+### The monogram
+
+The K&C mark is CSS and SVG, not WebGL: a burgundy coin with a champagne serif
+monogram, a soft extruded edge, a rotating gloss, a slow orbit and a highlight
+that follows the pointer. It floats continuously, tilts on hover and appears at
+three sizes across the site (small in the chrome, medium in the hub, large on the
+landing page). Under `prefers-reduced-motion` it is completely static.
+
+### The discovery hub
+
+A 3×3 QR-like grid: the K&C hub in the centre, six service nodes in the outer
+cells, finder-square corners and a faint module grid. Thin dashed connectors are
+drawn at runtime from the measured node centres, and a single gold traveler
+patrols the six nodes. It routes through the centre each time, so the motion
+tells the same story as the layout: everything passes through K&C.
+
+Hovering or focusing a node sends the traveler to it and highlights the card.
+Clicking opens one shared dialog with the service description and next step.
+The centre opens the full company overview. Below 900px the hub becomes a
+stacked list (core first) and the traveler/connectors are removed.
+
+## Motion
+
+GSAP + SplitText + ScrollTrigger. One vocabulary throughout: masked lines rising,
+short reveals, gentle drifts and a handful of slow ambient loops.
+
+| Where | What |
+| --- | --- |
+| Landing | monogram float, gloss sweep, orbit, pointer tilt, halo |
+| Header | gold hairline that tracks scroll progress |
+| Headlines | masked line-by-line reveals on scroll |
+| Sections | staggered fades and parallax drifts |
+| Hub | dashed connectors, orbiting ring, patrol traveler, card highlight |
+| Marquee | slow discipline ticker (pauses on hover) |
+| About | stage rail fills as the five stages come into view |
+| Quote / closing | slow sheen sweep, floating marks |
+| Throughout | champagne dust motes on a low-frame-rate canvas |
+
+All of it is skipped under `prefers-reduced-motion: reduce`, and none of it is
+needed to read or use the page.
+
+## Accessibility and fallbacks
+
+- The service dialog traps focus, closes on Escape or backdrop click, locks the
+  page behind it and returns focus to the control that opened it.
+- The burger exposes `aria-expanded` / `aria-controls`; the current page is marked
+  with `aria-current="page"`.
+- Form fields have real labels, a `role="status"` live region and native
+  validation; contact links are real `mailto:` and `https://wa.me/` links.
+- `prefers-reduced-motion` disables the dust canvas, the traveler, the marquee and
+  every scroll animation.
+- Without JavaScript the hub is replaced by a readable six-service list; all other
+  pages remain fully readable.
+- Canvas and decorative marks are `aria-hidden` and `pointer-events: none`.
+
+## The enquiry form
+
+There is no backend in this build, so a valid enquiry is passed to the visitor's
+mail client with every field pre-filled (`mailto:hello@kcpropel.com`). To deliver
+it server-side instead, set an endpoint (Formspree, Web3Forms, the client's CRM
+webhook) and replace the submit handler in `src/pages/contact.ts`.
+
+## QR codes
+
+Point the ME-QR code at:
+
+- `https://varun122134.github.io/kc-propel-website/profile/` for the full company
+  profile (intro, six services, approach, contact) — the recommended destination;
+- `https://varun122134.github.io/kc-propel-website/discover/` for the interactive
+  service hub;
+- `https://varun122134.github.io/kc-propel-website/contact/` for a code printed on
+  a proposal or business card.
+
+Use a different code per placement and keep the destination in ME-QR so it can be
+repointed without reprinting.
 
 ## Deploying
 
@@ -127,48 +167,34 @@ git push
 ```
 
 One-time repo setting: **Settings → Pages → Build and deployment → Source** must be
-**GitHub Actions** (not “Deploy from a branch”), because the site is built rather
-than served from the repo root.
+**GitHub Actions**, because the site is built rather than served from the repo root.
 
-Any static host works too — Netlify, Vercel and Cloudflare Pages all detect Vite and
+Any static host works too — Netlify, Vercel and Cloudflare Pages detect Vite and
 need no configuration beyond `npm run build` and a `dist` output directory.
 
 ## Before going live — replace these
 
-1. **Team names / photos** — the three cards read `Founder Name` and `Director Name`.
-   In `index.html`, swap the name text and replace `.team-photo` gradients with
-   `<img>` tags (keep the `aspect-ratio: 4 / 4.5` wrapper so cards stay aligned).
-2. **Contact details** — `hello@kcpropel.com` appears in the contact block and footer.
-   The LinkedIn links are `href="#"` placeholders.
-3. **Contact form** — validates and confirms in the browser only; nothing is sent.
-   Set `ENDPOINT` in `src/ui/form.ts` (Formspree, Web3Forms, or the customer's CRM
-   webhook) and the same handler starts delivering.
-4. **Founder quote attribution** — set the real name in the `Founder Message` block.
-5. **OG image** — add `assets/og.jpg` and an `og:image` tag for link previews.
+1. **DUNE licence** — add the licensed webfont and enable the `@font-face` block in
+   `src/styles/tokens.css` (currently falls back to Jost).
+2. **WhatsApp number** — `src/site/config.ts` uses `https://wa.me/?text=…` with no
+   number, which opens WhatsApp's own contact picker. Set the real number
+   (`https://wa.me/91XXXXXXXXXX?text=…`) and update the same links in the HTML.
+3. **Email** — `hello@kcpropel.com` is the assumed address in `src/site/config.ts`
+   and every page. Confirm or replace it.
+4. **Form endpoint** — swap the mailto handler in `src/pages/contact.ts` for a real
+   endpoint when one exists.
+5. **Copy review** — service descriptions, the five stages and the profile intro are
+   written from the brief and should be signed off by the client.
+6. **OG image** — add `assets/og.jpg` and an `og:image` tag per page for link previews.
 
-The customer's PDF and page renders (`K&C.pdf`, `reference/spec-pages/`) stay on
-your machine only and are not tracked.
-
-## Content sections, in order
-
-1. Hero + process strip (Research → Connect → Engage → Qualify → Propel)
-2. Statement — Good Products Need Good Conversations
-3. What We Do — eight service cards, 01–08
-4. How We Propel — five stages, dark band
-5. Every Campaign Needs a Reason — pinned horizontal rail (grid below 1024px)
-6. Who We Help — nine target sectors
-7. Why K&C Propel — three commitments
-8. The Team
-9. How We Work Together — Campaign / Partnership / Expansion
-10. Results — dark CTA
-11. About — Why the Name?
-12. Founder Message
-13. Contact — dark band with form
-14. Footer
+The client's PDF and page renders (`K&C.pdf`, `reference/spec-pages/`) stay on your
+machine only and are not tracked.
 
 ## Notes
 
-- Fully responsive: 4-up grids collapse to 2-up at 1080px and 1-up at 620px; nav
-  becomes a burger at 900px; the campaign rail pins only above 1024px.
-- The build emits one ~650 kB JS chunk (three.js + GSAP). It gzips to ~187 kB and is
-  the only blocking script; split it further only if the bundle becomes a problem.
+- Bundle: GSAP (+ SplitText/ScrollTrigger) is the only runtime dependency;
+  `three` and `lenis` were removed with the rebrand. The shared JS chunk is
+  ~127 kB (~50 kB gzip) and is deferred as a module.
+- The previous 3D one-pager is preserved in git history at commit `007f7aa`.
+- Tested at 1440×900, 1024×800 and 390×844, with reduced motion and with
+  JavaScript disabled.

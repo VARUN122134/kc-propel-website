@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact — K&amp;C</title>
+<meta name="description" content="Whatever is holding your growth back, let's work on it. Talk to K&C by email or WhatsApp, or send an enquiry." />
+<meta name="theme-color" content="#FAF9F6" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23702632'/%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='%23C6A66B' stroke-opacity='.55'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='24' fill='%23E4D4B6'%3EK%26amp;C%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&family=DM+Sans:wght@400;500&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet" />
+<style>html{background:#FAF9F6}body{margin:0;background:#FAF9F6}</style>
+</head>
+<body>
+
+<canvas class="dust" id="dust" aria-hidden="true"></canvas>
+
+<header class="site-header" data-header>
+  <div class="shell header-inner">
+    <a class="brand" href="/kc-propel-website/" aria-label="K&amp;C home">
+      <span class="monogram monogram--sm monogram--flat" data-monogram aria-hidden="true">
+        <span class="mono-float">
+          <span class="mono-disc">
+            <span class="mono-face"><span class="mono-letters">K&amp;C</span></span>
+            <span class="mono-gloss"></span>
+            <span class="mono-spark"></span>
+          </span>
+        </span>
+      </span>
+      <span class="brand-name">K&amp;C</span>
+    </a>
+
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      <a class="nav-link" href="/kc-propel-website/discover/">Discover</a>
+      <a class="nav-link" href="/kc-propel-website/about/">Approach</a>
+      <a class="nav-link" href="/kc-propel-website/contact/" aria-current="page">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn btn-sm" href="mailto:hello@kcpropel.com">Email us</a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-hero contact-hero">
+    <div class="shell">
+      <p class="eyebrow" data-reveal>Contact</p>
+      <h1 class="h1 contact-title" data-lines>Whatever is holding your growth back, let's work on it.</h1>
+      <p class="lede" data-reveal>No pitch deck, no discovery call script. Tell us where you are stuck and we will tell you honestly whether we can help.</p>
+    </div>
+  </section>
+
+  <section class="section contact-section">
+    <div class="shell contact-grid">
+
+      <div class="contact-form-wrap" data-reveal>
+        <p class="contact-kicker">Send an enquiry</p>
+        <form class="form contact-form" id="enquiry" data-form novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="name">Your name <span class="req" aria-hidden="true">*</span></label>
+              <input id="name" name="name" type="text" autocomplete="name" placeholder="Full name" required />
+            </div>
+            <div class="field">
+              <label for="company">Company</label>
+              <input id="company" name="company" type="text" autocomplete="organization" placeholder="Company name" />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="topic">Where do you need help?</label>
+            <div class="select-wrap">
+              <select id="topic" name="topic">
+                <option value="">Select a discipline</option>
+                <option value="Discover">Discover — lead generation &amp; prospecting</option>
+                <option value="Connect">Connect — business development</option>
+                <option value="Strategise">Strategise — sales strategy &amp; planning</option>
+                <option value="Manage">Manage — CRM &amp; pipeline management</option>
+                <option value="Execute">Execute — sales as a service</option>
+                <option value="Present">Present — proposals &amp; campaign support</option>
+                <option value="Not sure">Not sure yet — let's work it out</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">What's holding growth back? <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" rows="4" placeholder="A sentence or two is enough." required></textarea>
+          </div>
+
+          <label class="check">
+            <input type="checkbox" name="consent" value="yes" required />
+            <span>I'm happy for K&amp;C to reply to this enquiry by email or WhatsApp.</span>
+          </label>
+
+          <div class="form-actions">
+            <button class="btn" type="submit">
+              Send enquiry
+              <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <span class="form-note">Or write to <a href="mailto:hello@kcpropel.com">hello@kcpropel.com</a></span>
+          </div>
+
+          <p class="form-status" data-status role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <aside class="contact-panel" aria-label="Direct contact">
+        <div class="contact-panel-inner">
+          <p class="contact-kicker">Direct</p>
+
+          <ul class="contact-list">
+            <li>
+              <span class="contact-label">Email</span>
+              <a class="contact-value" href="mailto:hello@kcpropel.com">hello@kcpropel.com</a>
+              <button class="copy-btn" type="button" data-copy="hello@kcpropel.com">Copy</button>
+            </li>
+            <li>
+              <span class="contact-label">WhatsApp</span>
+              <a class="contact-value" href="https://wa.me/?text=Hi%20K%26C%2C%20I%27d%20like%20to%20talk%20about%20growing%20our%20business." target="_blank" rel="noopener">Start a chat</a>
+              <span class="contact-hint">Opens WhatsApp</span>
+            </li>
+            <li>
+              <span class="contact-label">Where</span>
+              <span class="contact-value">India &middot; clients worldwide</span>
+            </li>
+            <li>
+              <span class="contact-label">Response</span>
+              <span class="contact-value">Within one working day</span>
+            </li>
+          </ul>
+
+          <div class="contact-panel-foot">
+            <span class="monogram monogram--sm monogram--flat" data-monogram aria-hidden="true">
+              <span class="mono-float">
+                <span class="mono-disc">
+                  <span class="mono-face"><span class="mono-letters">K&amp;C</span></span>
+                </span>
+              </span>
+            </span>
+            <p>Let's grow together.</p>
+          </div>
+        </div>
+
+        <span class="contact-watermark" aria-hidden="true">K&amp;C</span>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section contact-next" aria-labelledby="next-heading">
+    <div class="shell">
+      <p class="eyebrow" data-reveal>What happens next</p>
+      <h2 class="h2 contact-next-title" id="next-heading" data-lines>Three short steps, no theatre.</h2>
+
+      <ol class="next-grid">
+        <li class="next-step" data-reveal>
+          <span class="next-num">01</span>
+          <h3 class="h3">A reply, from a person</h3>
+          <p>One of the partners reads every enquiry and answers within a working day.</p>
+        </li>
+        <li class="next-step" data-reveal>
+          <span class="next-num">02</span>
+          <h3 class="h3">A 30-minute conversation</h3>
+          <p>Where you are, what you have tried, and what would actually move the number.</p>
+        </li>
+        <li class="next-step" data-reveal>
+          <span class="next-num">03</span>
+          <h3 class="h3">A clear next move</h3>
+          <p>A short written view of the opportunity and the part of the system we would start with.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="shell closing-inner">
+      <p class="eyebrow eyebrow--light" data-reveal>Prefer to talk it through?</p>
+      <h2 class="display closing-title" data-lines>One conversation is usually <span class="serif">enough</span> to know.</h2>
+      <div class="closing-actions" data-reveal>
+        <a class="btn btn-gold" href="mailto:hello@kcpropel.com">Email hello@kcpropel.com</a>
+        <a class="btn btn-ghost" href="https://wa.me/?text=Hi%20K%26C%2C%20I%27d%20like%20to%20talk%20about%20growing%20our%20business." target="_blank" rel="noopener">Message on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="/kc-propel-website/" aria-label="K&amp;C home">
+          <span class="monogram monogram--sm monogram--flat" data-monogram aria-hidden="true">
+            <span class="mono-float">
+              <span class="mono-disc">
+                <span class="mono-face"><span class="mono-letters">K&amp;C</span></span>
+              </span>
+            </span>
+          </span>
+          <span class="brand-name">K&amp;C</span>
+        </a>
+        <p class="footer-tag">Let's grow together.</p>
+        <p class="footer-note">Business development and sales growth for companies with something worth selling.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="/kc-propel-website/discover/">Discover</a></li>
+          <li><a href="/kc-propel-website/about/">Approach</a></li>
+          <li><a href="/kc-propel-website/contact/">Contact</a></li>
+          <li><a href="/kc-propel-website/profile/">Company profile</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:hello@kcpropel.com">hello@kcpropel.com</a></li>
+          <li><a href="https://wa.me/?text=Hi%20K%26C%2C%20I%27d%20like%20to%20talk%20about%20growing%20our%20business." target="_blank" rel="noopener">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; <span data-year>2026</span> K&amp;C</span>
+      <span>Business Development &times; Sales Growth</span>
+    </div>
+  </div>
+</footer>
+
+<div class="veil" id="veil" aria-hidden="true">
+  <div class="veil-inner">
+    <span class="monogram monogram--sm monogram--flat" aria-hidden="true">
+      <span class="mono-float">
+        <span class="mono-disc">
+          <span class="mono-face"><span class="mono-letters">K&amp;C</span></span>
+        </span>
+      </span>
+    </span>
+    <span class="veil-word">K&amp;C</span>
+  </div>
+</div>
+
+<script type="module" src="/src/pages/contact.ts"></script>
+</body>
+</html>

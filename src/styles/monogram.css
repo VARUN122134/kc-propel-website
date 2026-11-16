@@ -1,0 +1,169 @@
+/* =========================================================
+   K&C monogram — the signature object
+   Burgundy coin, champagne lettering, soft extrusion, orbit.
+   ========================================================= */
+
+.monogram {
+  --mono: 120px;
+  position: relative;
+  display: inline-block;
+  width: var(--mono);
+  height: var(--mono);
+  perspective: 900px;
+  perspective-origin: 50% 42%;
+}
+
+.mono-float {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.mono-disc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.5s var(--ease-out);
+}
+
+.mono-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(198, 166, 107, 0.55);
+  background:
+    radial-gradient(120% 120% at 30% 22%,
+      #8C3B47 0%,
+      #702632 38%,
+      #5B1E28 68%,
+      #43151C 100%);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.32),
+    inset 0 -10px 24px rgba(40, 8, 12, 0.5),
+    0 1px 0 #5E2029,
+    0 2px 0 #5A1F27,
+    0 3px 0 #561D25,
+    0 4px 0 #521B23,
+    0 5px 0 #4E1921,
+    0 6px 0 #4A171F,
+    0 7px 0 #46151D,
+    0 8px 0 #42131B,
+    0 24px 42px -20px rgba(44, 18, 22, 0.6);
+}
+
+.mono-face::before {
+  content: "";
+  position: absolute;
+  inset: 7.5%;
+  border-radius: 50%;
+  border: 1px solid rgba(198, 166, 107, 0.34);
+  box-shadow: inset 0 0 24px rgba(44, 18, 22, 0.35);
+}
+
+.mono-letters {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: calc(var(--mono) * 0.355);
+  line-height: 1;
+  letter-spacing: 0.005em;
+  color: var(--gold-light);
+  text-shadow:
+    0 1px 0 rgba(255, 250, 240, 0.28),
+    0 2px 3px rgba(44, 18, 22, 0.75);
+  pointer-events: none;
+}
+
+.mono-gloss {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background: conic-gradient(
+    from 0deg,
+    rgba(255, 255, 255, 0) 0deg,
+    rgba(255, 255, 255, 0.16) 44deg,
+    rgba(255, 255, 255, 0) 118deg,
+    rgba(255, 255, 255, 0) 360deg
+  );
+  mix-blend-mode: soft-light;
+  will-change: transform;
+  animation: mono-sheen 11s linear infinite;
+}
+
+.mono-spark {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--mx, 32%) var(--my, 24%),
+    rgba(255, 246, 226, 0.5),
+    rgba(255, 246, 226, 0) 44%
+  );
+  mix-blend-mode: screen;
+  opacity: 0.6;
+}
+
+.mono-shadow {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: -6%;
+  height: 16%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(44, 18, 22, 0.26), rgba(44, 18, 22, 0) 70%);
+  filter: blur(5px);
+  pointer-events: none;
+}
+
+.mono-orbit {
+  position: absolute;
+  inset: -16%;
+  border-radius: 50%;
+  border: 1px solid rgba(198, 166, 107, 0.3);
+  transform: rotateX(70deg);
+  animation: mono-spin 16s linear infinite;
+  pointer-events: none;
+}
+.mono-orbit-dot {
+  position: absolute;
+  top: -2.5px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  margin-left: -2.5px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px rgba(198, 166, 107, 0.9);
+}
+
+@keyframes mono-sheen {
+  to { transform: rotate(360deg); }
+}
+@keyframes mono-spin {
+  to { transform: rotateX(70deg) rotate(360deg); }
+}
+
+/* ---------- sizes ---------- */
+
+.monogram--sm { --mono: 40px; }
+.monogram--md { --mono: 64px; }
+.monogram--lg { --mono: clamp(190px, 26vw, 300px); }
+
+.monogram--flat .mono-orbit,
+.monogram--flat .mono-gloss { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mono-gloss,
+  .mono-orbit { animation: none; }
+}

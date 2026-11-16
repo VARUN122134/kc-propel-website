@@ -1,0 +1,53 @@
+/* =========================================================
+   K&C — brand tokens
+   Deep burgundy, champagne gold, warm ivory.
+   ========================================================= */
+
+:root {
+  /* brand */
+  --ivory:        #FAF9F6;
+  --ivory-2:      #F3F0E9;
+  --ivory-3:      #EDE7DC;
+  --burgundy:     #702632;
+  --burgundy-deep:#4E1A22;
+  --burgundy-ink: #2C1216;
+  --gold:         #C6A66B;
+  --gold-light:   #E4D4B6;
+  --gold-deep:    #9E7F45;
+  --charcoal:     #282526;
+  --muted:        #6F6663;
+
+  /* lines */
+  --line:         rgba(40, 37, 38, 0.12);
+  --line-soft:    rgba(40, 37, 38, 0.07);
+  --line-gold:    rgba(198, 166, 107, 0.55);
+  --line-burgundy:rgba(112, 38, 50, 0.18);
+  --line-ivory:   rgba(250, 249, 246, 0.18);
+
+  /* type */
+  --font-display: "DUNE", "Jost", "Helvetica Neue", Arial, sans-serif;
+  --font-body:    "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif:   "Cormorant Garamond", Georgia, serif;
+
+  /* layout */
+  --maxw:   1240px;
+  --gutter: 48px;
+  --header-h: 84px;
+
+  /* motion */
+  --ease:     cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/*
+ * Licensed display face.
+ * DUNE is not redistributable, so the build ships without it and falls back to
+ * Jost. Drop the licensed webfont into /public/fonts and uncomment to switch:
+ *
+ * @font-face {
+ *   font-family: "DUNE";
+ *   src: url("/fonts/dune-regular.woff2") format("woff2");
+ *   font-weight: 300 500;
+ *   font-display: swap;
+ * }
+ */

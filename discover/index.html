@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Discover — K&amp;C</title>
+<meta name="description" content="Six disciplines around one hub: lead generation, business development, sales strategy, pipeline management, sales as a service and proposal support." />
+<meta name="theme-color" content="#FAF9F6" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23702632'/%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='%23C6A66B' stroke-opacity='.55'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='24' fill='%23E4D4B6'%3EK%26amp;C%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&family=DM+Sans:wght@400;500&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet" />
+<style>html{background:#FAF9F6}body{margin:0;background:#FAF9F6}</style>
+</head>
+<body>
+
+<canvas class="dust" id="dust" aria-hidden="true"></canvas>
+
+<noscript>
+  <style>
+    .hub, .marquee, .discover-note { display: none !important; }
+    .veil, .dust { display: none !important; }
+    .noscript-services { display: block !important; }
+  </style>
+</noscript>
+
+<header class="site-header" data-header>
+  <div class="shell header-inner">
+    <a class="brand" href="/kc-propel-website/" aria-label="K&amp;C home">
+      <span class="monogram monogram--sm monogram--flat" data-monogram aria-hidden="true">
+        <span class="mono-float">
+          <span class="mono-disc">
+            <span class="mono-face"><span class="mono-letters">K&amp;C</span></span>
+            <span class="mono-gloss"></span>
+            <span class="mono-spark"></span>
+          </span>
+        </span>
+      </span>
+      <span class="brand-name">K&amp;C</span>
+    </a>
+
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      <a class="nav-link" href="/kc-propel-website/discover/" aria-current="page">Discover</a>
+      <a class="nav-link" href="/kc-propel-website/about/">Approach</a>
+      <a class="nav-link" href="/kc-propel-website/contact/">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn btn-sm" href="/kc-propel-website/contact/">Start a conversation</a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="discover-head">
+    <div class="shell">
+      <p class="eyebrow" data-reveal>Interactive discovery</p>
+      <h1 class="h1 discover-title" data-lines>Where would you like to take your business?</h1>
+      <div class="discover-sub">
+        <p class="lede" data-reveal>Six disciplines, one hub. Choose a direction to see what happens inside it — or open the centre for the whole picture.</p>
+        <p class="discover-note" data-reveal><span class="dot" aria-hidden="true"></span> Tap a node to explore</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="hub-section" aria-labelledby="hub-heading">
+    <h2 id="hub-heading" class="sr-only">The six K&amp;C disciplines</h2>
+    <div class="shell">
+      <div class="hub" id="hub">
+        <span class="hub-grid" aria-hidden="true"></span>
+        <span class="hub-finder hub-finder--tl" aria-hidden="true"></span>
+        <span class="hub-finder hub-finder--tr" aria-hidden="true"></span>
+        <span class="hub-finder hub-finder--bl" aria-hidden="true"></span>
+
+        <svg class="hub-lines" aria-hidden="true" focusable="false"></svg>
+        <span class="hub-traveler" aria-hidden="true"><i></i></span>
+
+        <button class="hub-core" type="button" data-service="hub" aria-haspopup="dialog">
+          <span class="monogram monogram--sm monogram--flat" data-monogram aria-hidden="true">
+            <span class="mono-float">
+              <span class="mono-disc">
+                <span class="mono-face"><span class="mono-letters">K&amp;C</span></span>
+                <span class="mono-gloss"></span>
+              </span>
+            </span>
+          </span>
+          <span class="hub-core-label">The full picture</span>
+        </button>
+
+        <button class="hub-node hub-node--discover" type="button" data-service="discover" aria-haspopup="dialog">
+          <span class="node-num">01</span>
+          <span class="node-name">Discover</span>
+          <span class="node-field">Lead Generation &amp; Prospecting</span>
+        </button>
+
+        <button class="hub-node hub-node--connect" type="button" data-service="connect" aria-haspopup="dialog">
+          <span class="node-num">02</span>
+          <span class="node-name">Connect</span>
+          <span class="node-field">Business Development</span>
+        </button>
+
+        <button class="hub-node hub-node--strategise" type="button" data-service="strategise" aria-haspopup="dialog">
+          <span class="node-num">03</span>
+          <span class="node-name">Strategise</span>
+          <span class="node-field">Sales Strategy &amp; Planning</span>
+        </button>
+
+        <button class="hub-node hub-node--manage" type="button" data-service="manage" aria-haspopup="dialog">
+          <span class="node-num">04</span>
+          <span class="node-name">Manage</span>
+          <span class="node-field">CRM &amp; Pipeline Management</span>
+        </button>
+
+        <button class="hub-node hub-node--execute" type="button" data-service="execute" aria-haspopup="dialog">
+          <span class="node-num">05</span>
+          <span class="node-name">Execute</span>
+          <span class="node-field">Sales as a Service</span>
+        </button>
+
+        <button class="hub-node hub-node--present" type="button" data-service="present" aria-haspopup="dialog">
+          <span class="node-num">06</span>
+          <span class="node-name">Present</span>
+          <span class="node-field">Proposals &amp; Campaign Support</span>
+        </button>
+      </div>
+
+      <div class="noscript-services">
+        <h3 class="h3">Our six disciplines</h3>
+        <ul>
+          <li><strong>Discover</strong> — Lead generation and prospecting.</li>
+          <li><strong>Connect</strong> — Business development.</li>
+          <li><strong>Strategise</strong> — Sales strategy and planning.</li>
+          <li><strong>Manage</strong> — CRM and pipeline management.</li>
+          <li><strong>Execute</strong> — Sales as a service.</li>
+          <li><strong>Present</strong> — Proposals and campaign support.</li>
+        </ul>
+        <p><a href="/kc-propel-website/contact/">Start a conversation</a></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Discover</span><i></i><span>Connect</span><i></i><span>Strategise</span><i></i><span>Manage</span><i></i><span>Execute</span><i></i><span>Present</span><i></i>
+      <span>Discover</span><i></i><span>Connect</span><i></i><span>Strategise</span><i></i><span>Manage</span><i></i><span>Execute</span><i></i><span>Present</span><i></i>
+    </div>
+  </div>
+
+  <section class="discover-cta">
+    <div class="shell discover-cta-inner">
+      <p class="eyebrow" data-reveal>Not sure where to start?</p>
+      <h2 class="h2" data-lines>Most businesses need two or three of these, not all six.</h2>
+      <p class="lede" data-reveal>Tell us what you're trying to reach and we'll tell you which parts of the hub will get you there.</p>
+      <a class="btn" href="/kc-propel-website/contact/" data-reveal>
+        Start a conversation
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="/kc-propel-website/" aria-label="K&amp;C home">
+          <span class="monogram monogram--sm monogram--flat" data-monogram aria-hidden="true">
+            <span class="mono-float">
+              <span class="mono-disc">
+                <span class="mono-face"><span class="mono-letters">K&amp;C</span></span>
+              </span>
+            </span>
+          </span>
+          <span class="brand-name">K&amp;C</span>
+        </a>
+        <p class="footer-tag">Let's grow together.</p>
+        <p class="footer-note">Business development and sales growth for companies with something worth selling.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="/kc-propel-website/discover/">Discover</a></li>
+          <li><a href="/kc-propel-website/about/">Approach</a></li>
+          <li><a href="/kc-propel-website/contact/">Contact</a></li>
+          <li><a href="/kc-propel-website/profile/">Company profile</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:hello@kcpropel.com">hello@kcpropel.com</a></li>
+          <li><a href="https://wa.me/?text=Hi%20K%26C%2C%20I%27d%20like%20to%20talk%20about%20growing%20our%20business." target="_blank" rel="noopener">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; <span data-year>2026</span> K&amp;C</span>
+      <span>Business Development &times; Sales Growth</span>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" id="service-modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-body">
+    <button class="modal-close" type="button" data-close aria-label="Close dialog">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <p class="eyebrow" data-modal-kicker>Discipline</p>
+    <h2 class="modal-title" id="modal-title" data-modal-title></h2>
+    <p class="modal-body" id="modal-body" data-modal-body></p>
+    <ul class="modal-points" data-modal-points></ul>
+    <a class="btn" href="/kc-propel-website/contact/" data-modal-cta>Start a conversation</a>
+  </div>
+</div>
+
+<div class="veil" id="veil" aria-hidden="true">
+  <div class="veil-inner">
+    <span class="monogram monogram--sm monogram--flat" aria-hidden="true">
+      <span class="mono-float">
+        <span class="mono-disc">
+          <span class="mono-face"><span class="mono-letters">K&amp;C</span></span>
+        </span>
+      </span>
+    </span>
+    <span class="veil-word">K&amp;C</span>
+  </div>
+</div>
+
+<script type="module" src="/src/pages/discover.ts"></script>
+</body>
+</html>
